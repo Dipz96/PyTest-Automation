@@ -1,0 +1,16 @@
+{
+  "create_user": {
+    "valid_payload": {
+      "name": "morpheus",
+      "job": "leader"
+    },
+    "invalid_payload_missing_name": {
+      "job": "leader"
+    },
+    "invalid_payload_empty_body": {},
+    "expected_status": {
+      "success": 201,
+      "bad_request": 400
+    }
+  }
+}

@@ -1,0 +1,11 @@
+pytest
+
+requests
+
+pytest-html
+
+allure-pytest
+
+pytest-xdist
+
+jsonschema

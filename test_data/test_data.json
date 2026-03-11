@@ -8,9 +8,59 @@
       "job": "leader"
     },
     "invalid_payload_empty_body": {},
-    "expected_status": {
+    "expected_data": {
       "success": 201,
       "bad_request": 400
     }
+  },
+
+  "user_id": {
+    "valid_id":{
+      "id":12
+    },
+    "invalid_id":{
+      "id":189
+    },
+    "expected_data":{
+      "email":"rachel.howell@reqres.in"
+    }
+  },
+
+  "register_user":{
+    "valid_payload": {
+      "email": "rachel.howell@reqres.in",
+      "password": "abcd"
+    },
+    "invalid_payload_missing_password": {
+      "email": "abcd"
+    },
+    "invalid_payload_not_created_user": {
+      "email":"dipayan.sanyal@gmail.com",
+      "password":"123"
+    },
+    "expected_data": {
+      "success": 200,
+      "bad_request": 400,
+      "id":12,
+      "token":""
+    },
+    "update_user":{
+      "valid_payload":{
+        "id":12,
+        "email":"rachel.howell@reqres.in",
+        "password":"abcd3"
+      },
+      "invalid_payload_incorrect_user":{
+        "id":189,
+        "email":"dipayan.sanyal@gmail.com",
+        "password":"astd"
+      },
+      "expected_data":{
+        "status_code":200,
+        "email":"rachel.howell@reqres.in",
+        "password":"abcd3"
+      }
+    }
   }
+
 }

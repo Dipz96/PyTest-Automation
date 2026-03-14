@@ -1,15 +1,30 @@
 import pytest
-from utils.assertions import assert_value,assert_key_present
+from utils.assertions import assert_value,assert_updationTime
 
+@pytest.mark.regression
 def test_update_user(api_client,test_data):
-    data  = test_data["register_user"]
+    data  = test_data["update_user"]
     payload = data["valid_payload"]
-    response = api_client.post("/register", json=payload)
+    id=payload["id"]
+    response = api_client.put(f"/users/{id}", json=payload)
     body=response.json()
 
-    assert_key_present(body,["id","token"])
     assert_value(response.status_code,200,"status_code")
     assert_value(body["id"],data["expected_data"]["id"],"id")
+    assert_value(body["email"],data["expected_data"]["email"],"email")
+    assert_value(body["password"],data["expected_data"]["password"],"password")
+    assert_updationTime(body["updatedAt"])
 
-    # store token for next tests
-    data["expected_data"]["token"] = body["token"]
+@pytest.mark.smoke
+@pytest.mark.regression
+def test_partialupdate_user(api_client,test_data):
+    data  = test_data["partialupdate_user"]
+    payload = data["valid_payload"]
+    id=payload["id"]
+    response = api_client.put(f"/users/{id}", json=payload)
+    body=response.json()
+
+    assert_value(response.status_code,200,"status_code")
+    assert_value(body["id"],data["expected_data"]["id"],"id")
+    assert_value(body["name"],data["expected_data"]["name"],"name")
+    assert_updationTime(body["updatedAt"])

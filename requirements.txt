@@ -9,3 +9,5 @@ allure-pytest
 pytest-xdist
 
 jsonschema
+
+pytest-bdd

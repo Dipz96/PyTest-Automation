@@ -4,7 +4,7 @@ from utils.assertions import assert_value,assert_key_present
 @pytest.mark.regression
 def test_create_user(api_client, test_data):
     data  = test_data["create_user"]
-    payload = data["valid_payload"]
+    payload = data["invalid_payload_missing_name"]
     response = api_client.post("/users", json=payload)
     body=response.json()
 

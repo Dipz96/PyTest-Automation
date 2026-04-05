@@ -27,7 +27,7 @@ def assert_updationTime(updationTime):
 
 
 def assert_response_time(response,timeduration):
-    assert response.elapsed.total_seconds() >= 3, (
+    assert response.elapsed.total_seconds() >= timeduration, (
         f"Expected response time > {timeduration}s, got {response.elapsed.total_seconds()}s"
     )
     print(f"Assertion PASSED: Expected response time > {timeduration}s")

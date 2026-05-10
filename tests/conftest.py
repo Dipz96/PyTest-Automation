@@ -17,9 +17,7 @@ def headers():
 def api_client(base_url,headers):
     return APIClient(base_url,headers)
 
-import json
-from pathlib import Path
-import pytest
+
 
 @pytest.fixture(scope="module")
 def test_data(pytestconfig):
@@ -31,6 +29,11 @@ def test_data(pytestconfig):
 
     with open(file_path) as f:
         return json.load(f)
+    
+@pytest.fixture
+#context fixture for communicating / storing values for immediate steps in a dict form->Aletrnative  to target_fixture
+def context():
+    return {}
     
 @pytest.fixture(scope="module", autouse=True)
 def log_test_file_lifecycle(request):

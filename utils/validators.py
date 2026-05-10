@@ -5,9 +5,9 @@ from utils.helpers import get_page
 
 def validate_single_user(body, **kwargs):
     test_data=kwargs.get("test_data")
-    data = test_data["user_id"]
+    data = test_data["get_user"]
 
-    id = data["valid_id"]["id"]
+    id = data["valid_payload"]["id"]
     email = data["expected_data"]["email"]
 
     assert_key_present(body["data"], ["id","email","first_name","last_name","avatar"])

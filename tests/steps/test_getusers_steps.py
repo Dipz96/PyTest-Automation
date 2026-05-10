@@ -6,6 +6,7 @@ from pytest_bdd import given, when, then, parsers
 from utils.assertions import assert_value,assert_key_present,assert_response_time
 from utils.validators import VALIDATION_MAP
 from utils.helpers import get_execution_time
+from tests.steps.common_steps import *
 
 pytestmark = pytest.mark.api #mark all api tests
 
@@ -16,22 +17,6 @@ pytestmark = pytest.mark.api #mark all api tests
 #     pass
 
 scenarios("../features/get_users.feature")
-
-@given("the API client is available")
-def api_available(api_client):
-    return api_client
-
-@when(parsers.parse('I send GET request to "{endpoint}"'),target_fixture="response")
-def request_users(api_client,endpoint,test_data,request):
-    data=test_data["user_id"]
-    params = {
-    "valid_id": data["valid_id"]["id"],
-    "invalid_id": data["invalid_id"]["id"]
-    }
-
-    endpoint = endpoint.format(**params)
-    request.node._endpoint = endpoint
-    return api_client.get(endpoint)
 
 @then(parsers.parse("the response status should be {status:d}"))
 def check_status(response,status):

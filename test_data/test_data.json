@@ -9,11 +9,11 @@
     }
   },
 
-  "user_id": {
-    "valid_id":{
+  "get_user": {
+    "valid_payload":{
       "id":12
     },
-    "invalid_id":{
+    "invalid_payload":{
       "id":189
     },
     "expected_data":{

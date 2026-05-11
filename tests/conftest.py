@@ -1,6 +1,9 @@
 import pytest
 import json
 from api.client import APIClient
+from utils.logger import get_logger
+
+logger = get_logger(__name__)
 
 @pytest.fixture(scope="session")
 def base_url():
@@ -38,6 +41,6 @@ def context():
 @pytest.fixture(scope="module", autouse=True)
 def log_test_file_lifecycle(request):
     module_name = request.module.__name__
-    print(f"\n===== Starting test file: {module_name} =====")
+    logger.info(f"========== START TEST: {module_name} ==========")
     yield
-    print(f"\n===== Finished test file: {module_name} =====")
+    logger.info(f"========== END TEST: {module_name} ==========")

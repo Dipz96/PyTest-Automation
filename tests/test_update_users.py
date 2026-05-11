@@ -1,5 +1,8 @@
 import pytest
 from utils.assertions import assert_value,assert_updationTime
+from utils.logger import get_logger
+
+logger=get_logger(__name__)
 
 @pytest.mark.regression
 def test_update_user(api_client,test_data):
@@ -8,6 +11,8 @@ def test_update_user(api_client,test_data):
     id=payload["id"]
     response = api_client.put(f"/users/{id}", json=payload)
     body=response.json()
+
+    logger.info(f"data:{payload}")
 
     assert_value(response.status_code,200,"status_code")
     assert_value(body["id"],data["expected_data"]["id"],"id")
